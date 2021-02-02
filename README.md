@@ -29,7 +29,7 @@ To get the COVID-Net pre-trained model weights:
   - `model-8485.index`
   - `model.meta`
 
-### Downloading the COIVDx dataset
+### Downloading the COVIDx dataset
 
 We use two CXR datasets in the accompanying paper: the open [COVIDx dataset](https://github.com/lindawangg/COVID-Net), and a private dataset from the CC-CCII. We cannot include the CC-CCII dataset, so this repository serves to reproduce the experiments that depend on _only_ the COVIDx dataset.
 
