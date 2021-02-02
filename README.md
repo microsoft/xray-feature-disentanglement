@@ -16,7 +16,6 @@ The following commands should create a conda environment with the necessary requ
 ```bash
 conda env create -f environment.yml
 conda activate xray-feature-disentanglement
-pip install git+https://github.com/mlmed/torchxrayvision.git@b274a7a32c462faff6df8cde711498d34f1acc36 # install torchxrayvision at the specific commit we used
 ```
 
 ### Downloading the COVID-Net model
