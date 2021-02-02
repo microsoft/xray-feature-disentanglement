@@ -1,0 +1,1 @@
+The images in this directory are in the public domain, see [here](https://github.com/ieee8023/covid-chestxray-dataset/tree/master/images).

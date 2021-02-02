@@ -1,0 +1,25 @@
+name: xray-feature-disentanglement
+channels:
+  - pytorch
+  - defaults
+dependencies:
+  - pytorch
+  - torchvision
+  - cudatoolkit=11.0
+  - imageio
+  - ipykernel
+  - matplotlib
+  - numpy
+  - opencv
+  - pandas
+  - pillow
+  - pip
+  - python
+  - scikit-image
+  - scikit-learn
+  - openpyxl
+  pip:
+    - pydicom
+    - parse
+    - umap-learn
+    - tensorflow==1.15

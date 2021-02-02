@@ -1,3 +1,10 @@
+# Custom ignores
+.vscode/
+datasets/
+output/
+data/metadata_covidx.csv
+data/pretrained_models/
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]

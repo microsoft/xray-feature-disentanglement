@@ -1,0 +1,4 @@
+python train.py --split 0 --repetition 1 --model xrv --mask masked --output_dir output/umap_experiments/ --save_embeddings --lr_start 10.0 --gpu 0
+python train.py --split 0 --repetition 1 --model xrv --mask unmasked --output_dir output/umap_experiments/ --save_embeddings --lr_start 10.0 --gpu 0
+python train.py --split 0 --repetition 1 --model xrv --mask masked --output_dir output/umap_experiments/ --save_embeddings --lr_start 10.0 --gpu 0 --use_feature_disentanglement
+python train.py --split 0 --repetition 1 --model xrv --mask unmasked --output_dir output/umap_experiments/ --save_embeddings --lr_start 10.0 --gpu 0 --use_feature_disentanglement
