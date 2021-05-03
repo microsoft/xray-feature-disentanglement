@@ -1,5 +1,7 @@
 # Deep learning models for COVID-19 chest x-ray classification: Preventing shortcut learning using feature disentanglement
 
+*Disclaimer: This repository is provided for research and development use only.  The models described in this repo are not intended for use in clinical decision-making or for any other clinical use and the performance of these models for clinical use has not been established.*
+
 This README describes how to reproduce models/some experiments from the preprint "Deep learning models for COVID-19 chest x-ray classification: Preventing shortcut learning using feature disentanglement". **Note: the "CC-CCII" dataset is proprietary so we cannot include it, however this repository reproduces all results that only depend on the COVIDx dataset.**
 
 A rough sketch of how the repository is setup:
