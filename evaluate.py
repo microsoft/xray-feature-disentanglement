@@ -41,7 +41,7 @@ def main():
     # Parse out model arguments from the model filename -- we guarantee that our saved models will look like this
     assert os.path.exists(args.model_fn), "Model file does not exist"
     model_parts = parse(
-        "covidx_{mask}_{model}_{disentangle}_split-{split}_{repetition}_lr-50.0_hls-64.pkl",
+        "covidx_{mask}_{model}_{disentangle}_split-{split}_{repetition}_lr-{lr}_hls-64.pkl",
         os.path.basename(args.model_fn)
     )
     masked = model_parts["mask"] == "masked"
@@ -102,23 +102,13 @@ def main():
     ## Adjusting for normalization
     repetition = int(model_parts["repetition"])
     split_idx = int(model_parts["split"])
-    all_embeddings = utils.get_embeddings("covidx", model_parts["mask"], base_model)
-    all_task_labels = utils.get_task_labels("covidx")
-    all_domain_labels = utils.get_domain_labels("covidx")
+
     np.random.seed(repetition)
     torch.manual_seed(repetition)
-    train_splits = []
-    val_splits = []
-    test_splits = []
-    kf = StratifiedKFold(n_splits=10, shuffle=True, random_state=repetition)
-    for i, (train_index, test_index) in enumerate(kf.split(all_embeddings, all_domain_labels)):
-        train_index, val_index = train_test_split(train_index, test_size=0.1, stratify=all_domain_labels[train_index], random_state=repetition)
-        train_splits.append(train_index)
-        val_splits.append(val_index)
-        test_splits.append(test_index)
-    scaler = StandardScaler()
-    scaler = scaler.fit(all_embeddings[train_splits[split_idx]])
-    embeddings = scaler.transform(embeddings)
+
+    means = np.load(f"datasets/embeddings/covidx_{model_parts['mask']}_{model_parts['model']}_{split_idx}_{repetition}-means.npy")
+    stds = np.load(f"datasets/embeddings/covidx_{model_parts['mask']}_{model_parts['model']}_{split_idx}_{repetition}-stds.npy")
+    embeddings = (embeddings - means) / (stds + 0.0000001)
 
     test_dataset = training_utils.EmbeddingMultiTaskDataset(
         embeddings,
@@ -133,7 +123,6 @@ def main():
     )
     print("Finished embedding images in %0.4f seconds" % (time.time() - tic))
 
-    
     ## Run embeddings through the saved model
     tic = float(time.time())
     with open(args.model_fn, "rb") as f:
